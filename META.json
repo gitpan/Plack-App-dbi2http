@@ -32,6 +32,7 @@
          "requires" : {
             "DBI" : "0",
             "DBIx::FunctionalAPI" : "0",
+            "File::ShareDir" : "0",
             "File::Slurp::Tiny" : "0",
             "File::Write::Rotate" : "0",
             "Perinci::Access::Base::Patch::PeriAHS" : "0",
@@ -62,7 +63,7 @@
          "web" : "https://github.com/sharyanto/perl-Plack-App-dbi2http"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"

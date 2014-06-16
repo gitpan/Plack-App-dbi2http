@@ -20,6 +20,7 @@ name: Plack-App-dbi2http
 requires:
   DBI: '0'
   DBIx::FunctionalAPI: '0'
+  File::ShareDir: '0'
   File::Slurp::Tiny: '0'
   File::Write::Rotate: '0'
   Perinci::Access::Base::Patch::PeriAHS: '0'
@@ -31,7 +32,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Plack-App-dbi2http
   homepage: https://metacpan.org/release/Plack-App-dbi2http
   repository: git://github.com/sharyanto/perl-Plack-App-dbi2http.git
-version: '0.01'
+version: '0.02'
 x_Dist_Zilla:
   perl:
     version: '5.018002'

@@ -6,9 +6,10 @@ META.json
 META.yml
 Makefile.PL
 README
+bin/dbi2http
 dist.ini
 lib/Plack/App/dbi2http.pm
-share/sample-config/dbi2http.conf.json
+share/sample-config/dbi2http.conf.yaml
 share/www/dbi2http.psgi
 t/00-compile.t
 t/release-pod-coverage.t

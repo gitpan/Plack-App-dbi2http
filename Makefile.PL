@@ -21,12 +21,15 @@ my %WriteMakefileArgs = (
     "File::ShareDir::Install" => "0.06"
   },
   "DISTNAME" => "Plack-App-dbi2http",
-  "EXE_FILES" => [],
+  "EXE_FILES" => [
+    "bin/dbi2http"
+  ],
   "LICENSE" => "perl",
   "NAME" => "Plack::App::dbi2http",
   "PREREQ_PM" => {
     "DBI" => 0,
     "DBIx::FunctionalAPI" => 0,
+    "File::ShareDir" => 0,
     "File::Slurp::Tiny" => 0,
     "File::Write::Rotate" => 0,
     "Perinci::Access::Base::Patch::PeriAHS" => 0,
@@ -40,7 +43,7 @@ my %WriteMakefileArgs = (
     "IPC::Open3" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -50,6 +53,7 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "DBI" => 0,
   "DBIx::FunctionalAPI" => 0,
+  "File::ShareDir" => 0,
   "File::Slurp::Tiny" => 0,
   "File::Spec" => 0,
   "File::Write::Rotate" => 0,
