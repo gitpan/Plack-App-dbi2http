@@ -4,13 +4,12 @@ use 5.010;
 use strict;
 use warnings;
 
-our $DATE = '2014-06-16'; # DATE
-our $VERSION = '0.02'; # VERSION
+our $DATE = '2014-06-17'; # DATE
+our $VERSION = '0.03'; # VERSION
 
 use File::ShareDir qw(dist_file);
 use File::Temp qw(tempfile);
-use Getopt::Long qw(:config pass_through no_permute);
-use Pod::Usage;
+use Getopt::Long qw(:config pass_through no_permute auto_help auto_version);
 use YAML::Syck qw(DumpFile);
 
 my %Opts;
@@ -18,7 +17,6 @@ my %Opts;
 GetOptions(
     'user' => \$Opts{user},
     'pass' => \$Opts{pass},
-    'help' => sub { pod2usage(0) },
 );
 
 die "Please supply DBI dsn to export\n" unless @ARGV;
@@ -55,7 +53,7 @@ dbi2http - Export DBI database as HTTP API (Riap::HTTP)
 
 =head1 VERSION
 
-This document describes version 0.02 of dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-16.
+This document describes version 0.03 of dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-17.
 
 =head1 SYNOPSIS
 
@@ -80,7 +78,11 @@ All other options will be passed to B<plackup>.
 
 =head2 --user => str
 
+Supply DBI username. Some driver do not need it (e.g. SQLite).
+
 =head2 --pass => str
+
+Supply DBI password. Some driver do not need it (e.g. SQLite).
 
 =head1 SEE ALSO
 

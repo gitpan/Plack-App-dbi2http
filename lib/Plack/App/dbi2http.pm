@@ -4,8 +4,8 @@ use 5.010001;
 use strict;
 use warnings;
 
-our $VERSION = '0.02'; # VERSION
-our $DATE = '2014-06-16'; # DATE
+our $VERSION = '0.03'; # VERSION
+our $DATE = '2014-06-17'; # DATE
 
 1;
 # ABSTRACT: Export DBI database as HTTP API (Riap::HTTP)
@@ -22,7 +22,7 @@ Plack::App::dbi2http - Export DBI database as HTTP API (Riap::HTTP)
 
 =head1 VERSION
 
-This document describes version 0.02 of Plack::App::dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-16.
+This document describes version 0.03 of Plack::App::dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-17.
 
 =head1 SYNOPSIS
 
