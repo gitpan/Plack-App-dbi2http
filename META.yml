@@ -32,7 +32,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Plack-App-dbi2http
   homepage: https://metacpan.org/release/Plack-App-dbi2http
   repository: git://github.com/sharyanto/perl-Plack-App-dbi2http.git
-version: '0.03'
+version: '0.04'
 x_Dist_Zilla:
   perl:
     version: '5.018002'
