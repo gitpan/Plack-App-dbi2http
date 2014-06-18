@@ -4,8 +4,8 @@ use 5.010;
 use strict;
 use warnings;
 
-our $DATE = '2014-06-17'; # DATE
-our $VERSION = '0.04'; # VERSION
+our $DATE = '2014-06-18'; # DATE
+our $VERSION = '0.05'; # VERSION
 
 use File::ShareDir qw(dist_file);
 use File::Temp qw(tempfile);
@@ -59,15 +59,15 @@ dbi2http - Export DBI database as HTTP API (Riap::HTTP)
 
 =head1 VERSION
 
-This document describes version 0.04 of dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-17.
+This document describes version 0.05 of dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-18.
 
 =head1 SYNOPSIS
 
-Simplest usage:
+Simplest usage (will run an HTTP server):
 
  % dbi2http dbi:SQLite:dbname=/path/to/your.db
 
-Specify DBI user and password:
+To specify DBI user and password:
 
  % dbi2http dbi:mysql:database=foo --user dbuser --pass dbpass
 
@@ -79,10 +79,86 @@ See other options:
 
  % dbi2http --help
 
+After the server is running, you can query it from another console, e.g. via
+curl:
+
+ % curl http://localhost:5000/list_tables
+ countries
+ continents
+
+ % curl http://localhost:5000/list_columns?table=countries
+ id
+ ind_name
+ eng_name
+ tags
+
+ % curl 'http://localhost:5000/list_columns?table=countries&detail=1&-riap-fmt=json-pretty'
+ [
+    200,
+   "OK",
+   [
+      {
+         "pos" : 1,
+         "name" : "id",
+         "type" : "text"
+      },
+      {
+         "name" : "ind_name",
+         "pos" : 2,
+         "type" : "text"
+      },
+      {
+         "type" : "text",
+         "name" : "eng_name",
+         "pos" : 3
+      },
+      {
+         "pos" : 4,
+         "name" : "tags",
+         "type" : "text"
+      }
+   ]
+ ]
+
+ % curl 'http://localhost:5000/list_rows?table=countries'
+ China   cn      Cina    panda
+ Indonesia       id      Indonesia       bali,tropical
+ Singapore       sg      Singapura       tropical
+ United States of America        us      Amerika Serikat
+
+ % curl 'http://localhost:5000/list_rows?table=countries&-riap-fmt=text-pretty'
+ .-----------------------------------------------------------------.
+ | eng_name                   id   ind_name          tags          |
+ |                                                                 |
+ | China                      cn   Cina              panda         |
+ | Indonesia                  id   Indonesia         bali,tropical |
+ | Singapore                  sg   Singapura         tropical      |
+ | United States of America   us   Amerika Serikat                 |
+ `-----------------------------------------------------------------'
+
+Or use L<App::riap>, a client shell for Riap (with filesystem-like API browsing
+and shell tab completion):
+
+ % riap http://localhost:5000/
+ riap /> ls
+ list_columns
+ list_rows
+ list_tables
+
+ riap /> list_tables
+ countries
+ continents
+
+ riap /> list_columns --table countries --detail
+
+ riap /> list_rows --table countries
+
 =head1 DESCRIPTION
 
 This is a one-liner shortcut to export your DBI database as HTTP API (using
-Riap::HTTP protocol).
+Riap::HTTP protocol). It is a wrapper to a PSGI app (L<Plack::App::dbi2http>)
+which does the heavy-lifting. So what this script does is basically create a
+config file on-the-fly and run B<plackup> to serve the PSGI application.
 
 =head1 USAGE
 
@@ -102,7 +178,7 @@ Supply DBI password. Some driver do not need it (e.g. SQLite).
 
 =head1 SEE ALSO
 
-L<Plack::App::dbi2http>
+L<Plack::App::dbi2http>, L<Riap>, L<Riap::HTTP>
 
 =head1 HOMEPAGE
 

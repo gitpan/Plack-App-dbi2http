@@ -4,8 +4,8 @@ use 5.010001;
 use strict;
 use warnings;
 
-our $VERSION = '0.04'; # VERSION
-our $DATE = '2014-06-17'; # DATE
+our $VERSION = '0.05'; # VERSION
+our $DATE = '2014-06-18'; # DATE
 
 1;
 # ABSTRACT: Export DBI database as HTTP API (Riap::HTTP)
@@ -22,7 +22,7 @@ Plack::App::dbi2http - Export DBI database as HTTP API (Riap::HTTP)
 
 =head1 VERSION
 
-This document describes version 0.04 of Plack::App::dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-17.
+This document describes version 0.05 of Plack::App::dbi2http (from Perl distribution Plack-App-dbi2http), released on 2014-06-18.
 
 =head1 SYNOPSIS
 
@@ -37,7 +37,7 @@ Run service:
  % plackup dbi2http.psgi
  HTTP::Server::PSGI: Accepting connections at http://0:5000/
 
-Access HTTP API via, e.g. curl:
+From another console, access HTTP API via, e.g. curl:
 
  % curl http://localhost:5000/list_tables
  countries
@@ -93,7 +93,8 @@ Access HTTP API via, e.g. curl:
  | United States of America   us   Amerika Serikat                 |
  `-----------------------------------------------------------------'
 
-Or use L<App::riap>, a client shell for Riap:
+Or use L<App::riap>, a client shell for Riap (with filesystem-like API browsing
+and shell tab completion):
 
  % riap http://localhost:5000/
  riap /> ls
@@ -114,7 +115,7 @@ Or use L<App::riap>, a client shell for Riap:
 This module provides a sample Plack application, which you can customize, to
 export a DBI database as a HTTP API service.
 
-I was reading Yannick's blog entry today,
+I was reading Yanick's blog entry today,
 L<http://techblog.babyl.ca/entry/waack>, titled I<Instant REST API for Any
 Databases> and I thought I'd quickly cobble up something similar using a
 different toolbox. Granted, the resulting HTTP API is not REST (read: it's
@@ -268,7 +269,7 @@ For the full specification of the metadata format, see L<Rinci>.
 Aside from using a low-level HTTP client, we can also use L<App::riap>, a Riap
 client (just to note that Riap can also be accessed via transport protocol other
 than HTTP, but it's another subject matter). The client is a command-line shell
-which some conveniences like filesystem-like browsing of API tree, tab
+with some conveniences like filesystem-like browsing of API tree, tab
 completion, debugging, command history, and others. Let's install the client and
 try it out:
 
@@ -318,6 +319,9 @@ client performs a C<meta> request and converts it to a formatted help message).
 
 To add HTTP authentication (or do any other customization), you can just add a
 Plack middleware to the PSGI application.
+
+Last word, exporting a database as a public API service is usually B<not a good
+idea>. In case you don't realize that ;-)
 
 =head1 SEE ALSO
 
